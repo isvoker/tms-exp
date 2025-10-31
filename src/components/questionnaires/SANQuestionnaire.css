@@ -1,0 +1,150 @@
+.san-questionnaire {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  padding: 40px 20px;
+}
+
+.san-questionnaire .questionnaire-content {
+  max-width: 900px;
+  width: 100%;
+  padding: 40px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.san-questionnaire h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.san-questionnaire > .questionnaire-content > p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.questions-list {
+  margin: 30px 0;
+}
+
+.question-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  gap: 15px;
+}
+
+.question-number {
+  min-width: 30px;
+  height: 30px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.question-scale {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scale-label {
+  font-size: 14px;
+  color: #555;
+  min-width: 150px;
+}
+
+.scale-label.left {
+  text-align: left;
+}
+
+.scale-label.right {
+  text-align: right;
+}
+
+.scale-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.scale-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.scale-option input[type="radio"] {
+  display: none;
+}
+
+.radio-mark {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  font-size: 14px;
+  color: #666;
+}
+
+.scale-option input[type="radio"]:checked + .radio-mark {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+  transform: scale(1.1);
+}
+
+.scale-option:hover .radio-mark {
+  border-color: #4CAF50;
+}
+
+.san-questionnaire button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 15px 40px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.san-questionnaire button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.san-questionnaire button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.progress-indicator {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #666;
+}

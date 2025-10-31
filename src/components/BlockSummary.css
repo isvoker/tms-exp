@@ -1,0 +1,54 @@
+.block-summary {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.summary-content {
+  max-width: 600px;
+  padding: 40px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.summary-content h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.score-display {
+  margin: 40px 0;
+}
+
+.score-display h2 {
+  font-size: 24px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.score-value {
+  font-size: 72px;
+  font-weight: bold;
+  color: #4CAF50;
+  margin: 20px 0;
+}
+
+.score-display p {
+  font-size: 18px;
+  color: #888;
+}
+
+.continue-prompt {
+  margin-top: 40px;
+}
+
+.continue-prompt p {
+  font-size: 20px;
+  color: #666;
+}
