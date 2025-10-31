@@ -121,6 +121,8 @@ function ExperimentManager({ participantId }) {
     // Сохраняем метаданные блока
     if (loggerRef.current) {
       loggerRef.current.addBlockMetadata(currentBlockIndex + 1, blockData);
+      // Сохраняем данные после каждого блока
+      loggerRef.current.saveToFile();
     }
 
     const nextBlockIndex = currentBlockIndex + 1;
@@ -143,6 +145,36 @@ function ExperimentManager({ participantId }) {
         loggerRef.current.saveToFile();
       }
       setState(EXPERIMENT_STATES.FINISHED);
+    }
+  };
+
+  // Обработчик досрочного завершения эксперимента
+  const handleTerminateExperiment = () => {
+    const confirmTerminate = window.confirm(
+      'Вы уверены, что хотите завершить эксперимент?\nВсе текущие данные будут сохранены.'
+    );
+
+    if (confirmTerminate) {
+      // Сохраняем текущее состояние
+      if (loggerRef.current) {
+        loggerRef.current.addBlockMetadata(currentBlockIndex + 1, {
+          terminated: true,
+          terminatedAt: Date.now(),
+          completedTrials: currentTrialIndex
+        });
+        loggerRef.current.saveToFile();
+      }
+      setState(EXPERIMENT_STATES.FINISHED);
+    }
+  };
+
+  // Обработчик сохранения результатов с выбором места
+  const handleSaveResults = async () => {
+    if (loggerRef.current) {
+      const filepath = await loggerRef.current.saveToFileWithDialog();
+      if (filepath) {
+        alert(`Результаты успешно сохранены:\n${filepath}`);
+      }
     }
   };
 
@@ -183,7 +215,16 @@ function ExperimentManager({ participantId }) {
           <div className="finished-screen">
             <h1>Эксперимент завершен!</h1>
             <p>Спасибо за участие!</p>
-            <p>Результаты сохранены.</p>
+            <p>Результаты автоматически сохранены в папку приложения.</p>
+            <button
+              className="save-results-button"
+              onClick={handleSaveResults}
+            >
+              Получить результаты
+            </button>
+            <p className="save-results-hint">
+              Нажмите кнопку выше, чтобы сохранить результаты в выбранное место
+            </p>
           </div>
         );
 
@@ -224,6 +265,14 @@ function ExperimentManager({ participantId }) {
 
   return (
     <div className="experiment-manager">
+      {state !== EXPERIMENT_STATES.FINISHED && (
+        <button
+          className="terminate-button"
+          onClick={handleTerminateExperiment}
+        >
+          Завершить эксперимент
+        </button>
+      )}
       {renderCurrentState()}
     </div>
   );

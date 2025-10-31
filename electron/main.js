@@ -1,6 +1,10 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const isDev = require('electron-is-dev');
+const remoteMain = require('@electron/remote/main');
+
+// Инициализируем remote модуль
+remoteMain.initialize();
 
 let mainWindow;
 
@@ -14,6 +18,9 @@ function createWindow() {
       enableRemoteModule: true
     }
   });
+
+  // Включаем remote для этого окна
+  remoteMain.enable(mainWindow.webContents);
 
   const startURL = isDev
     ? 'http://localhost:3000'
